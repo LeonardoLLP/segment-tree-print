@@ -1,5 +1,8 @@
 // #include "print_segtree.h"
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+#include <vector>
+#include <string>
+#include <iostream>
 using namespace std;
 
 
