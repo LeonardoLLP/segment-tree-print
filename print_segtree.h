@@ -7,14 +7,14 @@ namespace detail {
     template<typename T>
     void print_node(T t[], int v, int spaces, int indent, std::string(*func)(T), std::vector<bool>* lines, direction d) {
         for (int i=0; i<spaces-indent; ++i) {
-            if ((*lines)[i]) std::cout << "|";
+            if ((*lines)[i]) std::cout << "\u2503";
             else std::cout << " ";
         }
 
-        if (d == UP) std::cout << "\u250C";
-        else /* d == DOWN */ std::cout << "\u2514";
+        if (d == UP) std::cout << "\u250F";
+        else /* d == DOWN */ std::cout << "\u2517";
 
-        for (int i=spaces-indent+1; i<spaces; ++i) std::cout << "\u2500";
+        for (int i=spaces-indent+1; i<spaces; ++i) std::cout << "\u2501";
 
         std::cout << func(t[v]) << std::endl;
     
