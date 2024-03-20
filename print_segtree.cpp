@@ -1,5 +1,13 @@
 #include <bits/stdc++.h>
 
+template<typename T>
+class TreePrint {
+public:
+    void print(T t[], int n, int indent) {
+        detail::print_segtree_aux(t, 1, 1, n, 0, indent, format::pii, new std::vector<bool>(), detail::NONE);
+    }
+};
+
 namespace detail {
 
     enum direction { UP, DOWN, NONE };
@@ -56,9 +64,4 @@ namespace format {
         for (int i=1; i<v.size(); ++i) res += "|" + std::to_string(v[i]);
         return res;
     }
-}
-
-template<typename T>
-void print_segtree(T t[], int n, int indent) {
-    detail::print_segtree_aux(t, 1, 1, n, 0, indent, format::pii, new std::vector<bool>(), detail::NONE);
 }
