@@ -1,4 +1,4 @@
-#include "print_segtree.h"
+// #include "print_segtree.h"
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -8,7 +8,7 @@ class TreePrinter {
 private:
     enum direction { UP, DOWN, NONE };
 
-    void print_node(T t[], int v, int spaces, int indent, string(*func)(T), vector<bool>* lines, direction d) {
+    void print_node(T t[], int v, int spaces, int indent, string(*func)(const T&), vector<bool>* lines, direction d) {
         for (int i=0; i<spaces-indent; ++i) {
             if ((*lines)[i]) cout << "\u2503";
             else cout << " ";
@@ -27,7 +27,7 @@ private:
     
     }
 
-    void print_segtree_aux(T t[], int v, int tl, int tr, int spaces, int indent, string(*func)(T), vector<bool>* lines, direction d) {
+    void print_segtree_aux(T t[], int v, int tl, int tr, int spaces, int indent, string(*func)(const T&), vector<bool>* lines, direction d) {
         if (tl == tr) {
             print_node(t, v, spaces, indent, func, lines, d);
         }
@@ -48,11 +48,11 @@ private:
         }
     }
 
-    string pii(const pair<int,int>& x) {
+    static string pii(const pair<int,int>& x) {
         return to_string(x.first) + " | " + to_string(x.second);
     }
 
-    string vector_int(const vector<int>& v) {
+    static string vector_int(const vector<int>& v) {
         string res;
         if (!v.empty()) res += to_string(v[0]);
         for (int i=1; i<v.size(); ++i) res += "|" + to_string(v[i]);
