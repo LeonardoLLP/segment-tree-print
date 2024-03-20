@@ -5,6 +5,18 @@
 #include <iostream>
 using namespace std;
 
+namespace format {
+    static string pair_int_int(const pair<int,int>& x) {
+        return to_string(x.first) + " | " + to_string(x.second);
+    }
+
+    static string vector_int(const vector<int>& v) {
+        string res;
+        if (!v.empty()) res += to_string(v[0]);
+        for (int i=1; i<v.size(); ++i) res += "|" + to_string(v[i]);
+        return res;
+    }
+}
 
 template<typename T>
 class TreePrinter {
@@ -51,17 +63,6 @@ private:
         }
     }
 
-    static string pii(const pair<int,int>& x) {
-        return to_string(x.first) + " | " + to_string(x.second);
-    }
-
-    static string vector_int(const vector<int>& v) {
-        string res;
-        if (!v.empty()) res += to_string(v[0]);
-        for (int i=1; i<v.size(); ++i) res += "|" + to_string(v[i]);
-        return res;
-    }
-
 public:
     /**
      * Prints the specified tree.
@@ -70,7 +71,7 @@ public:
      * @param indent The number of spaces between each level.
      */
     void print(T t[], int n, int indent) {
-        print_segtree_aux(t, 1, 1, n, 0, indent, pii, new vector<bool>(), NONE);
+        print_segtree_aux(t, 1, 1, n, 0, indent, format::pair_int_int, new vector<bool>(), NONE);
     }
 
     TreePrinter() {}
