@@ -60,6 +60,12 @@ private:
     }
 
 public:
+    /**
+     * Prints the specified tree.
+     * @param t A pointer to the array of the tree.
+     * @param n number of element of your array (the original one).
+     * @param indent The number of spaces between each level.
+     */
     void print(T t[], int n, int indent) {
         print_segtree_aux(t, 1, 1, n, 0, indent, pii, new vector<bool>(), NONE);
     }
