@@ -49,12 +49,12 @@ private:
     }
 
     namespace format {
-        string pii(pair<int,int> x) {
+        string pii(const pair<int,int>& x) {
             return to_string(x.first) + " | " + to_string(x.second);
         }
 
-        string vector_int(vector<int> v) {
-            string res = "";
+        string vector_int(const vector<int>& v) {
+            string res;
             if (!v.empty()) res += to_string(v[0]);
             for (int i=1; i<v.size(); ++i) res += "|" + to_string(v[i]);
             return res;
