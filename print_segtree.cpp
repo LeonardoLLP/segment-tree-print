@@ -8,7 +8,6 @@ class TreePrinter {
 private:
     enum direction { UP, DOWN, NONE };
 
-    template<typename T>
     void print_node(T t[], int v, int spaces, int indent, string(*func)(T), vector<bool>* lines, direction d) {
         for (int i=0; i<spaces-indent; ++i) {
             if ((*lines)[i]) cout << "\u2503";
@@ -26,7 +25,6 @@ private:
     
     }
 
-    template<typename T>
     void print_segtree_aux(T t[], int v, int tl, int tr, int spaces, int indent, string(*func)(T), vector<bool>* lines, direction d) {
         if (tl == tr) {
             print_node<T>(t, v, spaces, indent, func, lines, d);
