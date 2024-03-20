@@ -3,8 +3,8 @@
 namespace detail {
     template<typename T>
     void print_node(T t[], int v, int spaces, std::string(*func)(T)) {
-        std::cout << ' ';
-        for (int i=0; i<spaces; ++i) std::cout << ' ';
+        std::cout << " ";
+        for (int i=1; i<spaces; ++i) std::cout << " ";
         std::cout << func(t[v]) << std::endl;
     
     }
