@@ -16,9 +16,9 @@ namespace detail {
         }
         else {
             int tm = (tl + tr) / 2;
-            print_segtree_aux<T>(t, v*2+1, tm+1, tr, spaces+2, indent, func);
+            print_segtree_aux<T>(t, v*2+1, tm+1, tr, spaces+indent, indent, func);
             print_node<T>(t, v, spaces, func);
-            print_segtree_aux<T>(t, v*2, tl, tm, spaces+2, indent, func);
+            print_segtree_aux<T>(t, v*2, tl, tm, spaces+indent, indent, func);
         }
     }
 }
