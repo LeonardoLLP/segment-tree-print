@@ -67,11 +67,11 @@ public:
     /**
      * Prints the specified tree.
      * @param t A pointer to the array of the tree.
-     * @param n number of element of your array (the original one).
-     * @param indent The number of spaces between each level.
+     * @param n Number of elements of your array (the original one).
+     * @param f Function that format from a node type to a string.
      */
-    void print(T t[], int n, int indent) {
-        print_segtree_aux(t, 1, 1, n, 0, indent, format::pair_int_int, new vector<bool>(), NONE);
+    void print(T t[], int n, string(*f)(const T&)) {
+        print_segtree_aux(t, 1, 1, n, 0, 4, f, new vector<bool>(), NONE);
     }
 
     TreePrinter() {}
