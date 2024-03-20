@@ -1,37 +1,33 @@
+#include "print_segtree.h"
 #include <bits/stdc++.h>
+using namespace std;
+
 
 template<typename T>
-class TreePrint {
-public:
-    void print(T t[], int n, int indent) {
-        detail::print_segtree_aux(t, 1, 1, n, 0, indent, format::pii, new std::vector<bool>(), detail::NONE);
-    }
-};
-
-namespace detail {
-
+class TreePrinter {
+private:
     enum direction { UP, DOWN, NONE };
 
     template<typename T>
-    void print_node(T t[], int v, int spaces, int indent, std::string(*func)(T), std::vector<bool>* lines, direction d) {
+    void print_node(T t[], int v, int spaces, int indent, string(*func)(T), vector<bool>* lines, direction d) {
         for (int i=0; i<spaces-indent; ++i) {
-            if ((*lines)[i]) std::cout << "\u2503";
-            else std::cout << " ";
+            if ((*lines)[i]) cout << "\u2503";
+            else cout << " ";
         }
 
         if (d != NONE) {
-            if (d == UP) std::cout << "\u250F";
-            else /* d == DOWN */ std::cout << "\u2517";
+            if (d == UP) cout << "\u250F";
+            else /* d == DOWN */ cout << "\u2517";
 
-            for (int i=spaces-indent+1; i<spaces; ++i) std::cout << "\u2501";
+            for (int i=spaces-indent+1; i<spaces; ++i) cout << "\u2501";
         }
 
-        std::cout << func(t[v]) << std::endl;
+        cout << func(t[v]) << endl;
     
     }
 
     template<typename T>
-    void print_segtree_aux(T t[], int v, int tl, int tr, int spaces, int indent, std::string(*func)(T), std::vector<bool>* lines, direction d) {
+    void print_segtree_aux(T t[], int v, int tl, int tr, int spaces, int indent, string(*func)(T), vector<bool>* lines, direction d) {
         if (tl == tr) {
             print_node<T>(t, v, spaces, indent, func, lines, d);
         }
@@ -39,7 +35,7 @@ namespace detail {
             int tm = (tl + tr) / 2;
             lines->push_back(true);
             for (int i=1; i<indent; ++i) lines->push_back(false);
-            std::vector<bool> *l_up = new std::vector<bool>(), *l_down = new std::vector<bool>();
+            vector<bool> *l_up = new vector<bool>(), *l_down = new vector<bool>();
             l_up->assign(lines->begin(), lines->end());
             l_down->assign(lines->begin(), lines->end());
 
@@ -51,17 +47,25 @@ namespace detail {
             print_segtree_aux<T>(t, v*2, tl, tm, spaces+indent, indent, func, l_down, DOWN);
         }
     }
-}
 
-namespace format {
-    std::string pii(std::pair<int,int> x) {
-        return std::to_string(x.first) + " | " + std::to_string(x.second);
+    namespace format {
+        string pii(pair<int,int> x) {
+            return to_string(x.first) + " | " + to_string(x.second);
+        }
+
+        string vector_int(vector<int> v) {
+            string res = "";
+            if (!v.empty()) res += to_string(v[0]);
+            for (int i=1; i<v.size(); ++i) res += "|" + to_string(v[i]);
+            return res;
+        }
     }
 
-    std::string vector_int(std::vector<int> v) {
-        std::string res = "";
-        if (!v.empty()) res += std::to_string(v[0]);
-        for (int i=1; i<v.size(); ++i) res += "|" + std::to_string(v[i]);
-        return res;
+public:
+    void print(T t[], int n, int indent) {
+        print_segtree_aux(t, 1, 1, n, 0, indent, format::pii, new vector<bool>(), detail::NONE);
     }
-}
+
+    TreePrinter() {}
+};
+
