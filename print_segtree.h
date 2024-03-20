@@ -27,6 +27,13 @@ namespace format {
     std::string pii(std::pair<int,int> x) {
         return std::to_string(x.first) + " | " + std::to_string(x.second);
     }
+
+    std::string vector_int(std::vector<int> v) {
+        std::string res = "";
+        if (!v.empty()) res += std::to_string(v[0]);
+        for (int i=1; i<v.size(); ++i) res += "|" + std::to_string(v[i]);
+        return res;
+    }
 }
 
 template<typename T>
