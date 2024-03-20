@@ -47,7 +47,7 @@ private:
             print_segtree_aux<T>(t, v*2, tl, tm, spaces+indent, indent, func, l_down, DOWN);
         }
     }
-    
+
     string pii(const pair<int,int>& x) {
         return to_string(x.first) + " | " + to_string(x.second);
     }
@@ -61,7 +61,7 @@ private:
 
 public:
     void print(T t[], int n, int indent) {
-        print_segtree_aux(t, 1, 1, n, 0, indent, format::pii, new vector<bool>(), detail::NONE);
+        print_segtree_aux(t, 1, 1, n, 0, indent, pii, new vector<bool>(), NONE);
     }
 
     TreePrinter() {}
