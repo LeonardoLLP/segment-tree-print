@@ -47,18 +47,16 @@ private:
             print_segtree_aux<T>(t, v*2, tl, tm, spaces+indent, indent, func, l_down, DOWN);
         }
     }
+    
+    string pii(const pair<int,int>& x) {
+        return to_string(x.first) + " | " + to_string(x.second);
+    }
 
-    namespace format {
-        string pii(const pair<int,int>& x) {
-            return to_string(x.first) + " | " + to_string(x.second);
-        }
-
-        string vector_int(const vector<int>& v) {
-            string res;
-            if (!v.empty()) res += to_string(v[0]);
-            for (int i=1; i<v.size(); ++i) res += "|" + to_string(v[i]);
-            return res;
-        }
+    string vector_int(const vector<int>& v) {
+        string res;
+        if (!v.empty()) res += to_string(v[0]);
+        for (int i=1; i<v.size(); ++i) res += "|" + to_string(v[i]);
+        return res;
     }
 
 public:
