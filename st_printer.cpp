@@ -7,7 +7,7 @@ using namespace std;
 
 namespace format {
     static string pair_int_int(const pair<int,int>& x) {
-        return to_string(x.first) + " | " + to_string(x.second);
+        return to_string(x.first) + "|" + to_string(x.second);
     }
 
     static string vector_int(const vector<int>& v) {
