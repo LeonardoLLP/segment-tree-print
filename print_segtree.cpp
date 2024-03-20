@@ -29,7 +29,7 @@ private:
 
     void print_segtree_aux(T t[], int v, int tl, int tr, int spaces, int indent, string(*func)(T), vector<bool>* lines, direction d) {
         if (tl == tr) {
-            print_node<T>(t, v, spaces, indent, func, lines, d);
+            print_node(t, v, spaces, indent, func, lines, d);
         }
         else {
             int tm = (tl + tr) / 2;
@@ -42,9 +42,9 @@ private:
             if (d == UP) (*l_up)[spaces-indent] = false;
             else if (d == DOWN) (*l_down)[spaces-indent] = false;
 
-            print_segtree_aux<T>(t, v*2+1, tm+1, tr, spaces+indent, indent, func, l_up, UP);
-            print_node<T>(t, v, spaces, indent, func, lines, d);
-            print_segtree_aux<T>(t, v*2, tl, tm, spaces+indent, indent, func, l_down, DOWN);
+            print_segtree_aux(t, v*2+1, tm+1, tr, spaces+indent, indent, func, l_up, UP);
+            print_node(t, v, spaces, indent, func, lines, d);
+            print_segtree_aux(t, v*2, tl, tm, spaces+indent, indent, func, l_down, DOWN);
         }
     }
 
@@ -66,4 +66,3 @@ public:
 
     TreePrinter() {}
 };
-
