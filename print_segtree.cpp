@@ -22,6 +22,8 @@ private:
         }
 
         cout << func(t[v]) << endl;
+
+        delete lines;
     
     }
 
