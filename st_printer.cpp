@@ -91,9 +91,8 @@ public:
      * Prints the specified tree.
      * @param t A pointer to the array of the tree.
      * @param n Range of the segment tree (number of elements of the original array).
-     * @param indent Number of spaces to indent each level.
-     * @param format_f Function that formats from a node type to a string.
-     * @attention If defining your own format function, remember to make it static.
+     * @param indent Number of spaces to indent each level. If uncertain, use 4.
+     * @param format_f Function that formats from a node type to a string. If using your own, make it static.
      */
     void print(T t[], int n, int indent, string(*format_f)(const T&)) {
         if (indent < 1) indent = 1;
