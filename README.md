@@ -10,6 +10,7 @@ A simple class that allows to visualize segment trees in the terminal.
 
 #### At compile time:
 - Include the file when compiling. For example, if you want to compile a file named "main.cpp", compile it with "g++ main.cpp [st_printer.cpp](st_printer.cpp)".
+- **NOTE**: this step seems unnecesary, use it only if normal compilation isn't working.
 
 #### To use your own node type:
 - Create a **static** function that takes a single argument with the same type as the nodes of your segment tree and returns a string.
