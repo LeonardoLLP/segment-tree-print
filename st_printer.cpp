@@ -20,6 +20,14 @@ namespace format {
         for (int i=1; i<v.size(); ++i) res += "|" + to_string(v[i]);
         return res;
     }
+
+    static string _int(const int& x) {
+        return to_string(x);
+    }
+
+    static string _ll(const int& x) {
+        return to_string(x);
+    }
 }
 
 template<typename T>
