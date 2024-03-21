@@ -10,22 +10,21 @@ using namespace std;
  * @namespace
 */
 namespace format {
-    static string pair_int_int(const pair<int,int>& x) {
+    template <typename T>
+    static string _pair(const pair<T,T>& x) {
         return to_string(x.first) + "|" + to_string(x.second);
     }
 
-    static string vector_int(const vector<int>& v) {
+    template <typename T>
+    static string _vector(const vector<T>& v) {
         string res;
         if (!v.empty()) res += to_string(v[0]);
         for (int i=1; i<v.size(); ++i) res += "|" + to_string(v[i]);
         return res;
     }
 
-    static string _int(const int& x) {
-        return to_string(x);
-    }
-
-    static string _ll(const int& x) {
+    template <typename T>
+    static string _single(const T& x) {
         return to_string(x);
     }
 }
