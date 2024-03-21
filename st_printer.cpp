@@ -5,6 +5,10 @@
 #include <iostream>
 using namespace std;
 
+/**
+ * Collects all predefined format functions.
+ * @namespace
+*/
 namespace format {
     static string pair_int_int(const pair<int,int>& x) {
         return to_string(x.first) + "|" + to_string(x.second);
@@ -69,6 +73,7 @@ public:
      * @param t A pointer to the array of the tree.
      * @param n Number of elements of your array (the original one).
      * @param f Function that format from a node type to a string.
+     * @attention If defining your own format function, remember to make it static.
      */
     void print(T t[], int n, string(*f)(const T&)) {
         print_segtree_aux(t, 1, 1, n, 0, 4, f, new vector<bool>(), NONE);
