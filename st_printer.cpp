@@ -96,7 +96,7 @@ public:
      */
     void print(T t[], int n, int indent, string(*format_f)(const T&)) {
         if (indent < 1) indent = 1;
-        print_segtree_aux(t, 1, 1, n, 0, indent, f, new vector<bool>(), NONE);
+        print_segtree_aux(t, 1, 1, n, 0, indent, format_f, new vector<bool>(), NONE);
     }
 
     TreePrinter() {}
