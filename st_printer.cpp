@@ -10,11 +10,19 @@ using namespace std;
  * @namespace
 */
 namespace format {
+    /**
+     * Converts a pair of same type to a string.
+     * @param x A pair of type T.
+    */
     template <typename T>
     static string _pair(const pair<T,T>& x) {
         return to_string(x.first) + "|" + to_string(x.second);
     }
 
+    /**
+     * Converts a vector to a string separated by the "|" character.
+     * @param x A vector of type T.
+    */
     template <typename T>
     static string _vector(const vector<T>& v) {
         string res;
@@ -23,6 +31,10 @@ namespace format {
         return res;
     }
 
+    /**
+     * Converts a single argument to a string
+     * @param x A single type T argument.
+    */
     template <typename T>
     static string _single(const T& x) {
         return to_string(x);
