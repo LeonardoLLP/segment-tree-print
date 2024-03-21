@@ -95,8 +95,9 @@ public:
      * @param format_f Function that formats from a node type to a string.
      * @attention If defining your own format function, remember to make it static.
      */
-    void print(T t[], int n, string(*f)(const T&)) {
-        print_segtree_aux(t, 1, 1, n, 0, 4, f, new vector<bool>(), NONE);
+    void print(T t[], int n, int indent, string(*format_f)(const T&)) {
+        if (indent < 1) indent = 1;
+        print_segtree_aux(t, 1, 1, n, 0, indent, f, new vector<bool>(), NONE);
     }
 
     TreePrinter() {}
