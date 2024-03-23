@@ -60,29 +60,39 @@ private:
         }
 
         cout << func(t[v]) << endl;
-
-        delete lines;
     
     }
 
-    void print_segtree_aux(T t[], int v, int tl, int tr, int spaces, int indent, string(*func)(const T&), vector<bool>* lines, direction d) {
+    void print_line(vector<bool>* lines) {
+        for (auto b: *lines) {
+            if (b) cout << "\u2503";
+            else cout << " ";
+        }
+        cout << endl;
+    }
+
+    void print_segtree_aux(T t[], int v, int tl, int tr, int spaces, int indent, string(*func)(const T&), vector<bool>* lines, direction d, bool compressed) {
         if (tl == tr) {
             print_node(t, v, spaces, indent, func, lines, d);
         }
         else {
             int tm = (tl + tr) / 2;
-            lines->push_back(true);
-            for (int i=1; i<indent; ++i) lines->push_back(false);
             vector<bool> *l_up = new vector<bool>(), *l_down = new vector<bool>();
             l_up->assign(lines->begin(), lines->end());
-            l_down->assign(lines->begin(), lines->end());
+            l_up->push_back(true);
+            for (int i=1; i<indent; ++i) l_up->push_back(false);
+            l_down->assign(l_up->begin(), l_up->end());
 
             if (d == UP) (*l_up)[spaces-indent] = false;
             else if (d == DOWN) (*l_down)[spaces-indent] = false;
 
-            print_segtree_aux(t, v*2+1, tm+1, tr, spaces+indent, indent, func, l_up, UP);
+            print_segtree_aux(t, v*2+1, tm+1, tr, spaces+indent, indent, func, l_up, UP, compressed);
+            if (!compressed) print_line(l_up);
             print_node(t, v, spaces, indent, func, lines, d);
-            print_segtree_aux(t, v*2, tl, tm, spaces+indent, indent, func, l_down, DOWN);
+            if (!compressed) print_line(l_down);
+            print_segtree_aux(t, v*2, tl, tm, spaces+indent, indent, func, l_down, DOWN, compressed);
+
+            delete l_up, l_down;
         }
     }
 
@@ -96,7 +106,12 @@ public:
      */
     void print(T t[], int n, int indent, string(*format_f)(const T&)) {
         if (indent < 1) indent = 1;
-        print_segtree_aux(t, 1, 1, n, 0, indent, format_f, new vector<bool>(), NONE);
+        print_segtree_aux(t, 1, 1, n, 0, indent, format_f, new vector<bool>(), NONE, false);
+    }
+
+    void print_compressed(T t[], int n, int indent, string(*format_f)(const T&)) {
+        if (indent < 1) indent = 1;
+        print_segtree_aux(t, 1, 1, n, 0, indent, format_f, new vector<bool>(), NONE, true);
     }
 
     TreePrinter() {}
